@@ -38,9 +38,7 @@ build {
   ]
 
   provisioner "shell" {
-    inline = [
-      "sudo apt -y update && sudo apt -y upgrade"
-    ]
+    script = "scripts/build_script.sh"
   }
 
   post-processor "shell-local" {

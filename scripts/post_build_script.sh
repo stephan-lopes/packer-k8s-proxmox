@@ -13,11 +13,13 @@ function check() {
  STATUS=""
 }
 
+echo "Template Name $TEMPLATE_NAME"
 
 # Parte 1: Coleta de ID da Imagem Recém Criada
 # Descrição: Nessa parte, existe uma coleta simples do id, para utilização posterior no código.
 echo "Iniciando script..."
 SOURCE_VMID=$(curl -sk -H "Authorization: PVEAPIToken=$PROXMOX_USERNAME=$PROXMOX_TOKEN" "$PROXMOX_URL/cluster/resources?type=vm" | jq -r ".data[] | select( .name == \"$TEMPLATE_NAME\").vmid")
+sleep 2
 
 # Parte 2: Remoção de Imagem Latest para Substituição de Imagem
 # Descrição: Remove a Imagem Latest, caso já tenha sido criada
